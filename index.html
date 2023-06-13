@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Escola da Nuvem</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-image: url('imgTCC.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+
+    h1 {
+      margin-top: 1rem; /* Ajusta o espaçamento superior */
+      margin-bottom: 10px; /* Ajusta o espaçamento inferior */
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .form-row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    label {
+      margin-right: 8px;
+    }
+
+    #arquivosSalvos {
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Alterado para centralizar horizontalmente */
+      align-self: center; /* Alterado para centralizar horizontalmente */
+      max-height: 400px; /* Defina a altura máxima desejada */
+      overflow: auto; /* Habilita a rolagem quando necessário */
+    }
+
+    .item-salvo {
+      align-self: center; /* Alterado para centralizar horizontalmente */
+      align-items: center; /* Alterado para centralizar horizontalmente */
+      margin-bottom: 10px;
+      border-bottom: 1px solid black;
+    }
+
+    .item-salvo:last-child {
+      border-bottom: none;
+    }
+
+    .button-container {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <h1 style="text-align: center; margin-top: 1rem; color: #ffffff">Escola da Nuvem - TCC</h1>
+
+
+  <br><br>
+
+  <form>
+    <div class="form-row">
+      <div class="form-field">
+        <label for="nome" style="color: #ffffff;">Nome</label>
+        <input type="text" id="nome" name="nome">
+      </div>
+
+      <div class="form-field">
+        <label for="email" style="color: #ffffff;">E-mail</label>
+        <input type="email" id="email" name="email">
+      </div>
+    </div>
+
+    <div class="form-field">
+      <div class="button-container">
+        <input type="file" id="arquivo" name="arquivo">
+        <button type="button" onclick="carregarArquivo()">Salvar</button>
+      </div>
+    </div>
+
+  </form>
+
+  <br><br>
+
+  <div id="arquivosSalvos" style="text-align: center;"> <!-- Alterado para centralizar horizontalmente -->
+    <!-- Aqui serão exibidos os itens salvos -->
+  </div>
+
+  <script>
+    function carregarArquivo() {
+      const nome = document.getElementById('nome').value;
+      const email = document.getElementById('email').value;
+      const arquivo = document.getElementById('arquivo').files[0];
+
+      // Aqui você pode processar o arquivo selecionado e fazer o salvamento dos dados
+
+
+      const itemSalvo = document.createElement('div');
+      itemSalvo.classList.add('item-salvo');
+      itemSalvo.innerHTML = `
+        <div>
+          <p>Nome: ${nome}</p>
+          <p>E-mail: ${email}</p>
+        </div>
+        <a href="${URL.createObjectURL(arquivo)}" download>Download</a>
+        <br><br>
+      `;
+
+      document.getElementById('arquivosSalvos').appendChild(itemSalvo);
+
+      // Rolar para o novo item salvo
+      document.getElementById('arquivosSalvos').scrollTop = document.getElementById('arquivosSalvos').
+      scrollHeight;
+    }
+  </script>
+</body>
+</html>
